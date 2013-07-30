@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharpSoda2Consumer
+namespace Soda2Consumer
 {
     public class Soda2Consumer
     {

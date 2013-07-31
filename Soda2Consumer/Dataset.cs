@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Runtime.Serialization;
+using System.Net;
+using System.IO;
+using System.Web.Script.Serialization;
 
 namespace CSharpSoda2Consumer
 {
@@ -11,9 +14,13 @@ namespace CSharpSoda2Consumer
     {
         public QueryResult query(string p)
         {
-            throw new NotImplementedException();
+            var request = WebRequest.Create(Urls.dataUrl(domain, id));
+            var response = request.GetResponse();
+            var result = new QueryResult(response.GetResponseStream());
+            return result;
         }
 
+        public string domain { get; set; }
         [DataMember]
         public string id { get; set; }
         [DataMember]

@@ -32,12 +32,13 @@ namespace CSharpSoda2Consumer
         }
         public Dataset getDatasetInfo(string domain, string fourByFour)
         {
-            var url = string.Format("http://{0}/views/{1}.json", domain, fourByFour);
+            var url = Urls.metadataUrl(domain, fourByFour);
             var request = WebRequest.Create(url);
             var response = request.GetResponse();
             var ser = new DataContractJsonSerializer(typeof(Dataset));
-            var Dataset = (Dataset)ser.ReadObject(response.GetResponseStream());
-            return Dataset;
+            var dataset = (Dataset)ser.ReadObject(response.GetResponseStream());
+            dataset.domain = domain;
+            return dataset;
         }
     }
 }

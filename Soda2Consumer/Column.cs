@@ -4,7 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 
-namespace CSharpSoda2Consumer
+namespace Soda2Consumer
 {
     public class Column
     {

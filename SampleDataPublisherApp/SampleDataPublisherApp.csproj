@@ -47,6 +47,16 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Soda2Consumer\Soda2Consumer.csproj">
+      <Project>{fcc464e9-dd14-41ee-93ca-ab8cf1ebb789}</Project>
+      <Name>Soda2Consumer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Soda2Publisher\Soda2Publisher.csproj">
+      <Project>{29fc0109-37cf-48f0-b469-47bf674daeb4}</Project>
+      <Name>Soda2Publisher</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

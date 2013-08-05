@@ -5,7 +5,7 @@ using System.Net;
 using System.Runtime.Serialization.Json;
 using System.Text;
 
-namespace CSharpSoda2Consumer
+namespace Soda2Consumer
 {
     public class Soda2Client
     {

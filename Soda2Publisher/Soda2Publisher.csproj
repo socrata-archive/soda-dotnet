@@ -7,7 +7,7 @@
     <ProjectGuid>{29FC0109-37CF-48F0-B469-47BF674DAEB4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CSharpSoda2Publisher</RootNamespace>
+    <RootNamespace>Soda2Publisher</RootNamespace>
     <AssemblyName>CSharpSoda2Publisher</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -39,8 +39,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DatasetPublisherExtension.cs" />
     <Compile Include="Soda2Publisher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Soda2Consumer\Soda2Consumer.csproj">
+      <Project>{fcc464e9-dd14-41ee-93ca-ab8cf1ebb789}</Project>
+      <Name>Soda2Consumer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

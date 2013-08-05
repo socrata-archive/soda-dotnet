@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Web.Script.Serialization;
 
-namespace CSharpSoda2Consumer
+namespace Soda2Consumer
 {
     public class QueryResult
     {

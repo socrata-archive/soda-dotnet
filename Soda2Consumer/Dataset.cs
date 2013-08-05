@@ -7,7 +7,7 @@ using System.Net;
 using System.IO;
 using System.Web.Script.Serialization;
 
-namespace CSharpSoda2Consumer
+namespace Soda2Consumer
 {
     [DataContract]
     public class Dataset
@@ -45,5 +45,7 @@ namespace CSharpSoda2Consumer
         public long viewLastModified { get; set; }
         [DataMember]
         public Column[] columns { get; set; }
+
+        
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CSharpSoda2Consumer;
+using Soda2Consumer;
 using CSharpSoda2;
 
 namespace SampleDataConsumerApp
@@ -15,18 +15,18 @@ namespace SampleDataConsumerApp
             var noAuthClient = new Soda2Client();
             var basicAuthClient = new Soda2Client("name", "password");
             var oAuthClient = new Soda2Client("oauth app key");
-            var dataset = noAuthClient.getDatasetInfo("explore.data.gov", "644b-gaut");
+            var dataset = noAuthClient.getDatasetInfo("opendata.test-socrata.com", "q9fc-4m3d");
             Column[] columns = dataset.columns;
-            var responseA = dataset.query("select * where lastname = 'smith'");
+            var responseA = dataset.query("select * where title = 'The Killer'");
             var responseB = dataset.query(
                 new QueryBuilder()
-                .select("firstname", "lastname")
+                .select("title", "year")
                 .ToString()
             );
             var responseC = dataset.query(
                 new QueryBuilder()
-                .select("firstname", "lastname")
-                .where("lastname = 'smith'")
+                .select("title", "year")
+                .where("year > 1970")
                 .groupBy()
                 .having()
                 .orderBy()

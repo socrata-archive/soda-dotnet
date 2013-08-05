@@ -16,10 +16,9 @@ namespace Soda2Consumer
         public QueryResult(Stream stream, Column[] columns)
         {
             var body = new StreamReader(stream).ReadToEnd();
-            Console.Write(body);
             var ser = new JavaScriptSerializer();
             var rowObjects = (object[])ser.DeserializeObject(body);
-
+            rows = (from row in rowObjects select new Row(row)).ToArray();
         }
     }
 }

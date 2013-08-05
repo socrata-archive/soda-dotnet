@@ -17,14 +17,14 @@ namespace SampleDataPublisherApp
 
             dataset.truncate();
 
-            Row row = new Row();
+            Row row = new Row(new { a = "a", b = "b" });
 
             dataset.addRow(row);
             dataset.deleteRow(row);
             dataset.updateRow(row);
             dataset.replaceRow(row);
 
-            Row[] rowsToUpsert = new Row[]{new Row()};
+            Row[] rowsToUpsert = new Row[]{new Row(new { a = "a", b = "b" })};
             dataset.upsert(rowsToUpsert);
         }
     }

@@ -16,7 +16,7 @@ namespace Soda2Consumer
         {
             var request = WebRequest.Create(Urls.dataUrl(domain, id));
             var response = request.GetResponse();
-            var result = new QueryResult(response.GetResponseStream());
+            var result = new QueryResult(response.GetResponseStream(), columns);
             return result;
         }
 

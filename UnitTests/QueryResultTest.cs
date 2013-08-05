@@ -9,7 +9,8 @@ namespace UnitTests
     public class QueryResultTest
     {
         static FileStream crimeJson = File.OpenRead("resources/crime.json");
-        QueryResult qr = new QueryResult(crimeJson);
+        static Column[] columns = null;
+        QueryResult qr = new QueryResult(crimeJson, columns);
 
         [TestMethod]
         public void QueryResultConstructorTest()

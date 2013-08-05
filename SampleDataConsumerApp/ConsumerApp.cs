@@ -13,9 +13,8 @@ namespace SampleDataConsumerApp
         static void Main(string[] args)
         {
             var noAuthClient = new Soda2Client();
-            var basicAuthClient = new Soda2Client("name", "password");
-            var oAuthClient = new Soda2Client("oauth app key");
-            var dataset = noAuthClient.getDatasetInfo("opendata.test-socrata.com", "q9fc-4m3d");
+
+            var dataset = noAuthClient.getDatasetInfo("opendata.test-socrata.com", "qrqr-xi46");
             Column[] columns = dataset.columns;
             var responseA = dataset.query("select * where title = 'The Killer'");
             var responseB = dataset.query(
@@ -34,6 +33,9 @@ namespace SampleDataConsumerApp
                 .limit(5)
                 .ToString()
             );
+
+            var basicAuthClient = new Soda2Client("name", "password");
+            var oAuthClient = new Soda2Client("oauth app key");
         }
     }
 }

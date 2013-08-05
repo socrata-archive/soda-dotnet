@@ -6,6 +6,7 @@ using System.Text;
 
 namespace Soda2Consumer
 {
+    [DataContract]
     public class Column
     {
         [DataMember]

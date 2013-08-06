@@ -1,15 +1,19 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Soda2Consumer;
+using System.Configuration;
 
 namespace UnitTests.integration
 {
     [TestClass]
     public class DatasetIntegrationTest
     {
-        public static Soda2Client noAuthClient = new Soda2Client();
-        public static Dataset<Row> dataset = noAuthClient.getDatasetInfo<Row>("opendata.test-socrata.com", "qrqr-xi46");
 
+        public static string host = ConfigurationManager.AppSettings["socrata.host"];
+        public static string datasetId = ConfigurationManager.AppSettings["socrata.sample.dataset"];
+        public static Soda2Client noAuthClient = new Soda2Client();
+        public static Dataset<Row> dataset = noAuthClient.getDatasetInfo<Row>(host, datasetId);
+        
         [TestMethod]
         public void noopIntegrationTest()
         {

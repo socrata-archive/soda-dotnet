@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Soda2Consumer;
+using System.Configuration;
 
 namespace SampleDataConsumerApp
 {
@@ -12,11 +13,13 @@ namespace SampleDataConsumerApp
         static void Main(string[] args)
         {
             var noAuthClient = new Soda2Client();
-
-            var dataset = noAuthClient.getDatasetInfo<Row>("opendata.test-socrata.com", "qrqr-xi46");
+            var host = ConfigurationManager.AppSettings["socrata.host"];
+            var datasetId = ConfigurationManager.AppSettings["socrata.sample.dataset"];
+            var dataset = noAuthClient.getDatasetInfo<Row>(host, datasetId);
             Column[] columns = dataset.columns;
             var responseA = dataset.query("select * where title = 'The Killer'");
-            Console.Write(responseA);
+            Console.Write(String.Format("The movie was directed by {0}", responseA.rows[0]["director"]));
+
             var responseB = dataset.query(
                 new QueryBuilder()
                 .select("title", "year")

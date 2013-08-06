@@ -12,9 +12,9 @@ namespace Soda2Consumer
     
     public class Dataset<R>
     {
-        public QueryResult<R> query(string p)
+        public QueryResult<R> query(string q)
         {
-            var request = WebRequest.Create(Urls.dataUrl(domain, id));
+            var request = WebRequest.Create(Soda2Url.dataUrl(domain, id, q));
             var response = request.GetResponse();
             var result = new QueryResult<R>(response.GetResponseStream(), columns);
             return result;

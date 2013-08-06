@@ -54,6 +54,7 @@
     <Compile Include="model\Crime.cs" />
     <Compile Include="unit\QueryResultTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="unit\UrlsTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="playlist\integration_tests.playlist" />

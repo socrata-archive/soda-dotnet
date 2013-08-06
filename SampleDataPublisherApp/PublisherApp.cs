@@ -13,7 +13,7 @@ namespace SampleDataPublisherApp
         static void Main(string[] args)
         {
             var basicAuthClient = new Soda2Client("name", "password");
-            var dataset = basicAuthClient.getDatasetInfo("opendata.test-socrata.com", "q9fc-4m3d");
+            var dataset = basicAuthClient.getDatasetInfo<Row>("opendata.test-socrata.com", "q9fc-4m3d");
 
             dataset.truncate();
 

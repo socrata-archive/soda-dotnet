@@ -10,13 +10,13 @@ using System.Web.Script.Serialization;
 namespace Soda2Consumer
 {
     
-    public class Dataset
+    public class Dataset<R>
     {
-        public QueryResult<Row> query(string p)
+        public QueryResult<R> query(string p)
         {
             var request = WebRequest.Create(Urls.dataUrl(domain, id));
             var response = request.GetResponse();
-            var result = new QueryResult<Row>(response.GetResponseStream(), columns);
+            var result = new QueryResult<R>(response.GetResponseStream(), columns);
             return result;
         }
 

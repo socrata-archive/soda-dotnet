@@ -31,14 +31,14 @@ namespace Soda2Consumer
         {
             // TODO: Complete member initialization
         }
-        public Dataset getDatasetInfo(string domain, string fourByFour)
+        public Dataset<R> getDatasetInfo<R>(string domain, string fourByFour)
         {
             var url = Urls.metadataUrl(domain, fourByFour);
             var request = WebRequest.Create(url);
             var response = request.GetResponse();
             var ser = new JavaScriptSerializer();
             var body = new StreamReader(response.GetResponseStream()).ReadToEnd();
-            var dataset = ser.Deserialize<Dataset>(body);
+            var dataset = ser.Deserialize<Dataset<R>>(body);
             dataset.domain = domain;
             return dataset;
         }

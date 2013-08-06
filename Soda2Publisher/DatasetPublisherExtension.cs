@@ -9,32 +9,32 @@ namespace Soda2Publisher
 {
     public static class DatasetPublisherExtension
     {
-        public static void truncate(this Dataset dataset)
+        public static void truncate<R>(this Dataset<R> dataset)
         {
             throw new NotImplementedException();
         }
 
-        public static void upsert(this Dataset dataset, Row[] rowsToUpsert)
+        public static void upsert<R>(this Dataset<R> dataset, Row[] rowsToUpsert)
         {
             throw new NotImplementedException();
         }
 
-        public static void replaceRow(this Dataset dataset, Row row)
+        public static void replaceRow<R>(this Dataset<R> dataset, Row row)
         {
             throw new NotImplementedException();
         }
 
-        public static void updateRow(this Dataset dataset, Row row)
+        public static void updateRow<R>(this Dataset<R> dataset, Row row)
         {
             throw new NotImplementedException();
         }
 
-        public static void deleteRow(this Dataset dataset, Row row)
+        public static void deleteRow<R>(this Dataset<R> dataset, Row row)
         {
             throw new NotImplementedException();
         }
 
-        public static void addRow(this Dataset dataset, Row row)
+        public static void addRow<R>(this Dataset<R> dataset, Row row)
         {
             throw new NotImplementedException();
         }

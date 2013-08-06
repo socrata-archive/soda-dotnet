@@ -50,11 +50,13 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="integration\DatasetIntegrationTest.cs" />
     <Compile Include="model\Crime.cs" />
-    <Compile Include="QueryResultTest.cs" />
+    <Compile Include="unit\QueryResultTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="playlist\integration_tests.playlist" />
     <None Include="resources\crime.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

@@ -6,14 +6,7 @@ using System.Text;
 
 namespace Soda2Consumer
 {
-    public class Row
-    {
-        private object row;
-
-        public Row(object row)
-        {
-            this.row = row;
-        }
-    
+    public class Row : Dictionary<string, object>
+    {   
     }
 }

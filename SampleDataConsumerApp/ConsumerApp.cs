@@ -17,6 +17,7 @@ namespace SampleDataConsumerApp
             var dataset = noAuthClient.getDatasetInfo("opendata.test-socrata.com", "qrqr-xi46");
             Column[] columns = dataset.columns;
             var responseA = dataset.query("select * where title = 'The Killer'");
+            Console.Write(responseA);
             var responseB = dataset.query(
                 new QueryBuilder()
                 .select("title", "year")

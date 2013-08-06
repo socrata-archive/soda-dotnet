@@ -6,14 +6,13 @@ using System.Text;
 
 namespace Soda2Consumer
 {
-    [DataContract]
     public class Column
     {
-        [DataMember]
+        
         public string name { get; set; }
-        [DataMember]
+        
         public string dataTypeName { get; set; }
-        [DataMember]
+        
         public string fieldName { get; set; }
 
     }

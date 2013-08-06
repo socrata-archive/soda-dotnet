@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
-using System.Runtime.Serialization.Json;
 using System.Text;
+using System.Web.Script.Serialization;
 
 namespace Soda2Consumer
 {
@@ -35,8 +36,9 @@ namespace Soda2Consumer
             var url = Urls.metadataUrl(domain, fourByFour);
             var request = WebRequest.Create(url);
             var response = request.GetResponse();
-            var ser = new DataContractJsonSerializer(typeof(Dataset));
-            var dataset = (Dataset)ser.ReadObject(response.GetResponseStream());
+            var ser = new JavaScriptSerializer();
+            var body = new StreamReader(response.GetResponseStream()).ReadToEnd();
+            var dataset = ser.Deserialize<Dataset>(body);
             dataset.domain = domain;
             return dataset;
         }

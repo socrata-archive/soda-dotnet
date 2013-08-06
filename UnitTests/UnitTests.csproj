@@ -50,6 +50,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="model\Crime.cs" />
     <Compile Include="QueryResultTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

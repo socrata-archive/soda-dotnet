@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="integration\DatasetIntegrationTest.cs" />
     <Compile Include="model\Crime.cs" />
+    <Compile Include="integration\HttpIntegrationTest.cs" />
     <Compile Include="unit\QueryResultTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="unit\UrlsTest.cs" />

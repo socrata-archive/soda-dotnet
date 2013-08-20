@@ -8,7 +8,6 @@ namespace UnitTests.integration
     [TestClass]
     public class DatasetIntegrationTest
     {
-
         public static string host = ConfigurationManager.AppSettings["socrata.host"];
         public static string datasetId = ConfigurationManager.AppSettings["socrata.sample.dataset"];
         public static Soda2Client noAuthClient = new Soda2Client();

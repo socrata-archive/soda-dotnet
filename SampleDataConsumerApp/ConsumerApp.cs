@@ -37,7 +37,7 @@ namespace SampleDataConsumerApp
                 .ToString()
             );
 
-            var basicAuthClient = new Soda2Client("name", "password");
+            var basicAuthClient = new Soda2BasicAuthClient("name", "password");
             var oAuthClient = new Soda2Client("oauth app key");
         }
     }

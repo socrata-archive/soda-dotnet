@@ -46,6 +46,15 @@ namespace Soda2Consumer
         
         public Column[] columns { get; set; }
 
+        //present in error response
+        public string code { get; set; }
+
+        //indicates error
+        public bool error { get; set; }
+
+        //present in error response
+        public string message { get; set; }
+
         
     }
 }

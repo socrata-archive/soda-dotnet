@@ -14,15 +14,14 @@ namespace UnitTests
         private static string username = ConfigurationManager.AppSettings["socrata.username"];
         private static string password = ConfigurationManager.AppSettings["socrata.password"];
         public static Soda2Client noAuthClient = new Soda2Client();
-        public static Soda2Client basicAuthClient = new Soda2Client();
+        public static Soda2Client basicAuthClient = new Soda2BasicAuthClient(username, password);
         
 
         [TestMethod]
-        [ExpectedException(typeof(WebException))]
         public void ConfirmDatasetPrivateTest()
         {
             Dataset<Row> shouldBePrivate = noAuthClient.getDatasetInfo<Row>(host, datasetId);
-            Assert.Fail("request should have failed for authentication_required");
+            Assert.IsTrue(shouldBePrivate.error, "request with no auth should cause error");
         }
 
         [TestMethod]

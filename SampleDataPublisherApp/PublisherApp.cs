@@ -13,7 +13,7 @@ namespace SampleDataPublisherApp
     {
         static void Main(string[] args)
         {
-            var basicAuthClient = new Soda2Client("name", "password");
+            var basicAuthClient = new Soda2BasicAuthClient("name", "password");
             var host = ConfigurationManager.AppSettings["socrata.host"];
             var datasetId = ConfigurationManager.AppSettings["socrata.sample.dataset"];
             var dataset = basicAuthClient.getDatasetInfo<Row>(host, datasetId);

@@ -9,9 +9,9 @@ namespace Soda2Consumer
 {
     public class Soda2Url
     {
-        public static string metadataUrl(string domain, string fourByFour) { return string.Format("https://{0}/views/{1}.json", domain, fourByFour); }
-        public static string dataUrl(string host, string fourByFour, string query) { 
-            return string.Format("https://{0}/resource/{1}.json?$query={2}", host, fourByFour, HttpUtility.UrlEncode(query)); 
+        public static Uri metadataUrl(string domain, string fourByFour) { return new Uri(string.Format("https://{0}/views/{1}.json", domain, fourByFour)); }
+        public static Uri dataUrl(string host, string fourByFour, string query) { 
+            return new Uri(string.Format("https://{0}/resource/{1}.json?$query={2}", host, fourByFour, HttpUtility.UrlEncode(query))); 
         }
     }
 }

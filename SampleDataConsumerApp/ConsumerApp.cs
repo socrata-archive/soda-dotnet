@@ -18,27 +18,21 @@ namespace SampleDataConsumerApp
             var dataset = noAuthClient.getDatasetInfo<Row>(host, datasetId);
             Column[] columns = dataset.columns;
             var responseA = dataset.query("select * where title = 'The Killer'");
-            Console.Write(String.Format("The movie was directed by {0}", responseA.rows[0]["director"]));
+            Console.WriteLine(String.Format("The Killer was directed by {0}", responseA.rows[0]["director"]));
 
             var responseB = dataset.query(
                 new QueryBuilder()
-                .select("title", "year")
-                .ToString()
+                .select("count(year)", "year")
+                .where("year > 1950")
+                .groupBy("year")
+                .having("count_year > 0")
+                .orderBy("count_year desc")
             );
-            var responseC = dataset.query(
-                new QueryBuilder()
-                .select("title", "year")
-                .where("year > 1970")
-                .groupBy()
-                .having()
-                .orderBy()
-                .offset(5)
-                .limit(5)
-                .ToString()
+            Console.WriteLine(
+                String.Format("This dataset shows {1} movies from {0}", 
+                responseB.rows[1]["year"], 
+                responseB.rows[1]["count_year"])
             );
-
-            var basicAuthClient = new Soda2BasicAuthClient("name", "password");
-            var oAuthClient = new Soda2Client("oauth app key");
         }
     }
 }

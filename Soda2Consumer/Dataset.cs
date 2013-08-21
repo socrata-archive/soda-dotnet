@@ -14,11 +14,12 @@ namespace Soda2Consumer
     {
         public QueryResult<R> query(string q)
         {
-            var request = WebRequest.Create(Soda2Url.dataUrl(domain, id, q));
-            var response = request.GetResponse();
-            var result = new QueryResult<R>(response.GetResponseStream(), columns);
-            return result;
+            var response = client.sendWebRequest(Soda2Url.dataUrl(domain, id, q));
+            var rows = new QueryResult<R>(response.GetResponseStream(), columns);
+            return rows;
         }
+
+        public QueryResult<R> query(QueryBuilder qb) { return query(qb.ToString()); }
 
         public string domain { get; set; }
         
@@ -55,6 +56,6 @@ namespace Soda2Consumer
         //present in error response
         public string message { get; set; }
 
-        
+        public Soda2Client client { get; set; }
     }
 }

@@ -12,9 +12,9 @@ namespace Soda2Consumer
     {
         private string username;
         private string password;
-        protected override WebRequest createWebRequest(string url)
+        protected override WebRequest createWebRequest(Uri uri)
         {
-            var wr = base.createWebRequest(url);
+            var wr = base.createWebRequest(uri);
             string authInfo = username + ":" + password;
             authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(authInfo));
             wr.Headers["Authorization"] = "Basic " + authInfo;
@@ -46,30 +46,34 @@ namespace Soda2Consumer
             
         }
 
-        protected virtual WebRequest createWebRequest(String url)
+        protected virtual WebRequest createWebRequest(Uri uri)
         {
-            return WebRequest.Create(url);
+            return WebRequest.Create(uri);
         }
-        public Dataset<R> getDatasetInfo<R>(string domain, string fourByFour)
+
+        public WebResponse sendWebRequest(Uri uri)
         {
-            var url = Soda2Url.metadataUrl(domain, fourByFour);
-            var request = createWebRequest(url);
-            string body;
+            var request = createWebRequest(uri);
             try
             {
                 var response = request.GetResponse();
-                body = new StreamReader(response.GetResponseStream()).ReadToEnd();
+                return response;
             }
             catch (WebException e)
             {
-                using (WebResponse response = e.Response) 
-                {
-                    body = new StreamReader(response.GetResponseStream()).ReadToEnd();
-                }
+                return e.Response;
             }
+        }
+
+        public Dataset<R> getDatasetInfo<R>(string host, string fourByFour)
+        {
+            var url = Soda2Url.metadataUrl(host, fourByFour);
+            var response = sendWebRequest(url);
+            string body = new StreamReader(response.GetResponseStream()).ReadToEnd();
             var ser = new JavaScriptSerializer();
             var dataset = ser.Deserialize<Dataset<R>>(body);
-            dataset.domain = domain;
+            dataset.client = this;
+            dataset.domain = host;
             return dataset;
         }
     }

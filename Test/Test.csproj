@@ -56,6 +56,7 @@
     <Compile Include="integration\HttpIntegrationTest.cs" />
     <Compile Include="unit\QueryResultTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="unit\QueryBuilderTest.cs" />
     <Compile Include="unit\UrlsTest.cs" />
   </ItemGroup>
   <ItemGroup>

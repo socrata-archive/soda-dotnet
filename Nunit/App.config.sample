@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <appSettings>
+    <add key="socrata.host" value="http://opendata.test-socrata.com"/>
+    <add key="socrata.sample.dataset" value="qrqr-xi46"/>
+    <add key="socrata.username" value="" />
+    <add key="socrata.password" value="" />
+    <add key="socrata.app_token" value="" />
+  </appSettings>
+</configuration>

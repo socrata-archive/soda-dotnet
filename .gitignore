@@ -2,4 +2,5 @@
 */bin/*
 */obj/*
 */App.config
+*.userprefs
 *.pidb

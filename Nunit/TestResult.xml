@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--This file represents the results of running a test suite-->
+<test-results name="/home/rathbone1200cc/work/code/soda-dotnet/Nunit/bin/Debug/Nunit.dll" total="12" errors="2" failures="6" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2013-08-26" time="10:51:06">
+  <environment nunit-version="2.5.10.0" clr-version="4.0.30319.1" os-version="Unix 3.2.0.52" platform="Unix" cwd="/home/rathbone1200cc/work/code/soda-dotnet/Nunit" machine-name="rathu" user="rathbone1200cc" user-domain="rathu" />
+  <culture-info current-culture="en-US" current-uiculture="en-US" />
+  <test-suite type="Assembly" name="/home/rathbone1200cc/work/code/soda-dotnet/Nunit/bin/Debug/Nunit.dll" executed="True" result="Failure" success="False" time="0.541" asserts="0">
+    <results>
+      <test-suite type="Namespace" name="UnitTests" executed="True" result="Failure" success="False" time="0.534" asserts="0">
+        <results>
+          <test-suite type="TestFixture" name="HttpIntegrationTest" executed="True" result="Failure" success="False" time="0.199" asserts="0">
+            <results>
+              <test-case name="UnitTests.HttpIntegrationTest.BasicAuthTest" executed="True" result="Error" success="False" time="0.147" asserts="0">
+                <failure>
+                  <message><![CDATA[System.NullReferenceException : Object reference not set to an instance of an object]]></message>
+                  <stack-trace><![CDATA[at Soda2Consumer.Soda2Client.getDatasetInfo[Row] (System.String host, System.String fourByFour) [0x00000] in <filename unknown>:0
+at UnitTests.HttpIntegrationTest.BasicAuthTest () [0x00000] in <filename unknown>:0
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case name="UnitTests.HttpIntegrationTest.ConfirmDatasetPrivateTest" executed="True" result="Error" success="False" time="0.006" asserts="0">
+                <failure>
+                  <message><![CDATA[System.NullReferenceException : Object reference not set to an instance of an object]]></message>
+                  <stack-trace><![CDATA[at Soda2Consumer.Soda2Client.getDatasetInfo[Row] (System.String host, System.String fourByFour) [0x00000] in <filename unknown>:0
+at UnitTests.HttpIntegrationTest.ConfirmDatasetPrivateTest () [0x00000] in <filename unknown>:0
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </results>
+          </test-suite>
+          <test-suite type="Namespace" name="integration" executed="True" result="Failure" success="False" time="0.009" asserts="0">
+            <results>
+              <test-suite type="TestFixture" name="DatasetIntegrationTest" executed="True" result="Error" success="False" time="0.008" asserts="0">
+                <failure>
+                  <message><![CDATA[SetUp : System.TypeInitializationException : An exception was thrown by the type initializer for UnitTests.integration.DatasetIntegrationTest
+  ----> System.NullReferenceException : Object reference not set to an instance of an object]]></message>
+                  <stack-trace><![CDATA[at (wrapper managed-to-native) System.Reflection.MonoCMethod:InternalInvoke (System.Reflection.MonoCMethod,object,object[],System.Exception&)
+at System.Reflection.MonoCMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] in <filename unknown>:0
+--NullReferenceException
+at Soda2Consumer.Soda2Client.getDatasetInfo[Row] (System.String host, System.String fourByFour) [0x00000] in <filename unknown>:0
+at UnitTests.integration.DatasetIntegrationTest..cctor () [0x00000] in <filename unknown>:0
+]]></stack-trace>
+                </failure>
+                <results>
+                  <test-case name="UnitTests.integration.DatasetIntegrationTest.complexQueryTest" executed="True" result="Failure" success="False" time="0.000" asserts="0">
+                    <failure>
+                      <message><![CDATA[TestFixtureSetUp failed in DatasetIntegrationTest]]></message>
+                      <stack-trace />
+                    </failure>
+                  </test-case>
+                  <test-case name="UnitTests.integration.DatasetIntegrationTest.datasetInfoTest" executed="True" result="Failure" success="False" time="0.000" asserts="0">
+                    <failure>
+                      <message><![CDATA[TestFixtureSetUp failed in DatasetIntegrationTest]]></message>
+                      <stack-trace />
+                    </failure>
+                  </test-case>
+                  <test-case name="UnitTests.integration.DatasetIntegrationTest.noopIntegrationTest" executed="True" result="Failure" success="False" time="0.000" asserts="0">
+                    <failure>
+                      <message><![CDATA[TestFixtureSetUp failed in DatasetIntegrationTest]]></message>
+                      <stack-trace />
+                    </failure>
+                  </test-case>
+                  <test-case name="UnitTests.integration.DatasetIntegrationTest.simpleQueryTest" executed="True" result="Failure" success="False" time="0.000" asserts="0">
+                    <failure>
+                      <message><![CDATA[TestFixtureSetUp failed in DatasetIntegrationTest]]></message>
+                      <stack-trace />
+                    </failure>
+                  </test-case>
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+          <test-suite type="TestFixture" name="QueryBuilderTest" executed="True" result="Success" success="True" time="0.017" asserts="0">
+            <results>
+              <test-case name="UnitTests.QueryBuilderTest.ComplicatedQueryTest" executed="True" result="Success" success="True" time="0.013" asserts="1" />
+              <test-case name="UnitTests.QueryBuilderTest.SimpleQueryTest" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+            </results>
+          </test-suite>
+          <test-suite type="TestFixture" name="QueryResultTest" executed="True" result="Failure" success="False" time="0.221" asserts="0">
+            <results>
+              <test-case name="UnitTests.QueryResultTest.QueryResultConstructorWithRowClassTest" executed="True" result="Success" success="True" time="0.212" asserts="4" />
+              <test-case name="UnitTests.QueryResultTest.QueryResultWithModelClassTest" executed="True" result="Failure" success="False" time="0.001" asserts="2">
+                <failure>
+                  <message><![CDATA[  QueryResult did not assign rows
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at UnitTests.QueryResultTest.testResultDeserialization[Crime] (Soda2Consumer.QueryResult`1 qr) [0x00000] in <filename unknown>:0
+at UnitTests.QueryResultTest.QueryResultWithModelClassTest () [0x00000] in <filename unknown>:0
+]]></stack-trace>
+                </failure>
+              </test-case>
+              <test-case name="UnitTests.QueryResultTest.QueryResultWithObjectClassTest" executed="True" result="Failure" success="False" time="0.000" asserts="2">
+                <failure>
+                  <message><![CDATA[  QueryResult did not assign rows
+  Expected: not null
+  But was:  null
+]]></message>
+                  <stack-trace><![CDATA[at UnitTests.QueryResultTest.testResultDeserialization[Object] (Soda2Consumer.QueryResult`1 qr) [0x00000] in <filename unknown>:0
+at UnitTests.QueryResultTest.QueryResultWithObjectClassTest () [0x00000] in <filename unknown>:0
+]]></stack-trace>
+                </failure>
+              </test-case>
+            </results>
+          </test-suite>
+          <test-suite type="TestFixture" name="UrlsTest" executed="True" result="Success" success="True" time="0.070" asserts="0">
+            <results>
+              <test-case name="UnitTests.UrlsTest.dataUrlTest" executed="True" result="Success" success="True" time="0.069" asserts="1" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>

@@ -99,9 +99,16 @@ namespace Soda2Consumer
             }
             catch (WebException wex)
             {
-                var stream = wex.Response.GetResponseStream();
-                var exBody = new StreamReader(stream).ReadToEnd();
-                throw new SocrataException(exBody, wex);
+                if (wex.Response != null)
+                {
+                    var stream = wex.Response.GetResponseStream();
+                    var exBody = new StreamReader(stream).ReadToEnd();
+                    throw new SocrataException(exBody, wex);
+                }
+                else 
+                {
+                    throw wex;
+                }
             }
         }
 
@@ -112,6 +119,7 @@ namespace Soda2Consumer
             string body = new StreamReader(response.GetResponseStream()).ReadToEnd();
             var ser = new JavaScriptSerializer();
             var dataset = ser.Deserialize<Dataset<R>>(body);
+            response.Close();
             dataset.client = this;
             dataset.domain = host;
             return dataset;

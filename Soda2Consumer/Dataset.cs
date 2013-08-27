@@ -16,10 +16,21 @@ namespace Soda2Consumer
         {
             var response = client.get(Soda2Url.queryUri(domain, id, q));
             var rows = new QueryResult<R>(response.GetResponseStream(), columns);
-            return rows;
+            response.Close();
+            return rows;            
         }
 
         public QueryResult<R> query(QueryBuilder qb) { return query(qb.ToString()); }
+
+        public R getRow(string rowId)
+        {
+            var response = client.get(Soda2Url.rowUri(domain, id, rowId));
+            var body = new StreamReader(response.GetResponseStream()).ReadToEnd();
+            var ser = new JavaScriptSerializer();
+            var row = ser.Deserialize<R>(body);           
+            response.Close();
+            return row;
+        }
 
         public string domain { get; set; }
         

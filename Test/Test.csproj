@@ -37,6 +37,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -52,6 +54,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="integration\DatasetIntegrationTest.cs" />
+    <Compile Include="integration\PublishTest.cs" />
     <Compile Include="model\Crime.cs" />
     <Compile Include="integration\HttpIntegrationTest.cs" />
     <Compile Include="unit\QueryResultTest.cs" />
@@ -63,6 +66,9 @@
     <None Include="App.config" />
     <None Include="playlist\integration_tests.playlist" />
     <None Include="resources\crime.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="resources\movies.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

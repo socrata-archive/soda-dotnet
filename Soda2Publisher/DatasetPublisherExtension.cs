@@ -15,6 +15,7 @@ namespace Soda2Publisher
         public static void truncate<R>(this Dataset<R> dataset)
         {
             var response = dataset.client.delete(Soda2Url.datasetUri(dataset.domain, dataset.id));
+            response.Close();
         }
 
         public static void upsert<R>(this Dataset<R> dataset, Row[] rowsToUpsert)
@@ -23,14 +24,7 @@ namespace Soda2Publisher
             var response = dataset.client.post(Soda2Url.datasetUri(dataset.domain, dataset.id), body);
             response.Close();
         }
-
-        public static void replaceRow<R>(this Dataset<R> dataset, string rowId, Row row)
-        {
-            var body = ser.Serialize(row);
-            var response = dataset.client.put(Soda2Url.rowUri(dataset.domain, dataset.id, rowId), body);
-            response.Close();
-        }
-
+        
         public static void updateRow<R>(this Dataset<R> dataset, string rowId, Row row)
         {
             var body = ser.Serialize(row);

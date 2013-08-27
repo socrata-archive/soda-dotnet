@@ -18,10 +18,10 @@ namespace UnitTests
         
 
         [TestMethod]
+        [ExpectedException(typeof(SocrataException))]
         public void ConfirmDatasetPrivateTest()
         {
             Dataset<Row> shouldBePrivate = noAuthClient.getDatasetInfo<Row>(host, datasetId);
-            Assert.IsTrue(shouldBePrivate.error, "request with no auth should cause error");
         }
 
         [TestMethod]

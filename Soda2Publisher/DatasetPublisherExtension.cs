@@ -4,39 +4,53 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Soda2Consumer;
+using System.Web.Script.Serialization;
 
 namespace Soda2Publisher
 {
     public static class DatasetPublisherExtension
     {
+        private static JavaScriptSerializer ser = new JavaScriptSerializer();
+
         public static void truncate<R>(this Dataset<R> dataset)
         {
-            throw new NotImplementedException();
+            var response = dataset.client.delete(Soda2Url.datasetUri(dataset.domain, dataset.id));
         }
 
         public static void upsert<R>(this Dataset<R> dataset, Row[] rowsToUpsert)
         {
-            throw new NotImplementedException();
+            var body = ser.Serialize(rowsToUpsert);
+            var response = dataset.client.post(Soda2Url.datasetUri(dataset.domain, dataset.id), body);
+            response.Close();
         }
 
-        public static void replaceRow<R>(this Dataset<R> dataset, Row row)
+        public static void replaceRow<R>(this Dataset<R> dataset, string rowId, Row row)
         {
-            throw new NotImplementedException();
+            var body = ser.Serialize(row);
+            var response = dataset.client.put(Soda2Url.rowUri(dataset.domain, dataset.id, rowId), body);
+            response.Close();
         }
 
-        public static void updateRow<R>(this Dataset<R> dataset, Row row)
+        public static void updateRow<R>(this Dataset<R> dataset, string rowId, Row row)
         {
-            throw new NotImplementedException();
+            var body = ser.Serialize(row);
+            var response = dataset.client.post(Soda2Url.rowUri(dataset.domain, dataset.id, rowId), body);
+            response.Close();
         }
 
-        public static void deleteRow<R>(this Dataset<R> dataset, Row row)
+        public static void deleteRow<R>(this Dataset<R> dataset, string rowId)
         {
-            throw new NotImplementedException();
+            var response = dataset.client.delete(Soda2Url.rowUri(dataset.domain, dataset.id, rowId));
+            response.Close();
         }
 
         public static void addRow<R>(this Dataset<R> dataset, Row row)
         {
-            throw new NotImplementedException();
+            row.Remove(":id");
+            row.Remove(":delete");
+            var body = ser.Serialize(row);
+            var response = dataset.client.post(Soda2Url.datasetUri(dataset.domain, dataset.id), body);
+            response.Close();
         }
     }
 }

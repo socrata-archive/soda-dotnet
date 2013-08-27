@@ -14,7 +14,7 @@ namespace Soda2Consumer
     {
         public QueryResult<R> query(string q)
         {
-            var response = client.sendWebRequest(Soda2Url.dataUrl(domain, id, q));
+            var response = client.get(Soda2Url.queryUri(domain, id, q));
             var rows = new QueryResult<R>(response.GetResponseStream(), columns);
             return rows;
         }

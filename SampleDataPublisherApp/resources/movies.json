@@ -1,0 +1,227 @@
+﻿[
+{
+netflix_streaming: "true",
+title: "Grand Illusion",
+spine: "1",
+year: "1937",
+director: "Jean Renoir",
+url: "http://www.netflix.com/WiMovie/Grand_Illusion/21929903",
+country: "France"
+},
+{
+netflix_streaming: "true",
+title: "Seven Samurai",
+spine: "2",
+year: "1954",
+director: "Akira Kurosawa",
+url: "http://www.netflix.com/WiMovie/Seven_Samurai/950727",
+country: "Japan"
+},
+{
+netflix_streaming: "true",
+title: "The Lady Vanishes",
+spine: "3",
+year: "1938",
+director: "Alfred Hitchcock",
+url: "http://www.netflix.com/Movie/The_Lady_Vanishes/682083",
+country: "United Kingdom"
+},
+{
+netflix_streaming: "true",
+title: "Amarcord",
+spine: "4",
+year: "1974",
+director: "Federico Fellini",
+url: "http://www.netflix.com/WiMovie/Amarcord/247784",
+country: "Italy"
+},
+{
+netflix_streaming: "true",
+title: "The 400 Blows",
+spine: "5",
+year: "1959",
+director: "François Truffaut",
+url: "http://www.netflix.com/WiMovie/The_400_Blows/70048120",
+country: "France"
+},
+{
+netflix_streaming: "true",
+title: "Beauty and the Beast",
+spine: "6",
+year: "1946",
+director: "Jean Cocteau",
+url: "http://www.netflix.com/WiMovie/Beauty_and_the_Beast/11519928",
+country: "France"
+},
+{
+netflix_streaming: "false",
+title: "A Night to Remember",
+spine: "7",
+year: "1958",
+director: "Roy Ward Baker",
+url: "http://www.netflix.com/Movie/A_Night_to_Remember/805507",
+country: "United Kingdom"
+},
+{
+netflix_streaming: "false",
+title: "The Killer",
+spine: "8",
+year: "1989",
+director: "John Woo",
+url: "http://www.netflix.com/Movie/The_Killer/70020140",
+country: "Hong Kong"
+},
+{
+netflix_streaming: "false",
+title: "Hard Boiled",
+spine: "9",
+year: "1992",
+director: "John Woo",
+url: "http://www.netflix.com/Movie/Hard_Boiled/70069755",
+country: "Hong Kong"
+},
+{
+netflix_streaming: "true",
+title: "Walkabout ",
+spine: "10",
+year: "1971",
+director: "Nicolas Roeg",
+url: "http://www.netflix.com/Movie/Walkabout/1101378",
+country: "Australia"
+},
+{
+netflix_streaming: "true",
+title: "The Seventh Seal",
+spine: "11",
+year: "1957",
+director: "Ingmar Bergman",
+url: "http://www.netflix.com/Movie/The_Seventh_Seal/70127971",
+country: "Sweden"
+},
+{
+netflix_streaming: "false",
+title: "This Is Spinal Tap",
+spine: "12",
+year: "1984",
+director: "Rob Reiner",
+url: "http://www.netflix.com/Movie/This_Is_Spinal_Tap/1040339",
+country: "United States"
+},
+{
+netflix_streaming: "false",
+title: "The Silence of the Lambs",
+spine: "13",
+year: "1991",
+director: "Jonathan Demme",
+url: "http://www.netflix.com/Movie/The_Silence_of_the_Lambs/14546747",
+country: "United States"
+},
+{
+netflix_streaming: "false",
+title: "Samurai I: Musashi Miyamoto",
+spine: "14",
+year: "1954",
+director: "Hiroshi Inagaki",
+url: "http://www.netflix.com/Movie/Samurai_Trilogy_1_Musashi_Miyamoto/11519960",
+country: "Japan"
+},
+{
+netflix_streaming: "false",
+title: "Samurai II: Duel at Ichijoji Temple",
+spine: "15",
+year: "1955",
+director: "Hiroshi Inagaki",
+url: "http://www.netflix.com/Movie/Samurai_Trilogy_2_Duel_at_Ichijoji_Temple/11520079",
+country: "Japan"
+},
+{
+netflix_streaming: "false",
+title: "Samurai III: Duel at Ganryu Island",
+spine: "16",
+year: "1956",
+director: "Hiroshi Inagaki",
+url: "http://www.netflix.com/Movie/Samurai_Trilogy_3_Duel_at_Ganryu_Island/11520106",
+country: "Japan"
+},
+{
+netflix_streaming: "false",
+title: "Salò, or the 120 Days of Sodom",
+spine: "17",
+year: "1975",
+director: "Pier Paolo Pasolini",
+url: "http://www.netflix.com/Movie/Salo/70099045",
+country: "Italy"
+},
+{
+netflix_streaming: "false",
+title: "The Naked Kiss",
+spine: "18",
+year: "1964",
+director: "Samuel Fuller",
+url: "http://www.netflix.com/Movie/The_Naked_Kiss/791040",
+country: "United States"
+},
+{
+netflix_streaming: "false",
+title: "Shock Corridor",
+spine: "19",
+year: "1963",
+director: "Samuel Fuller",
+url: "http://www.netflix.com/Movie/Shock_Corridor/959673",
+country: "United States"
+},
+{
+netflix_streaming: "false",
+title: "Sid & Nancy",
+spine: "20",
+year: "1986",
+director: "Alex Cox",
+url: "http://www.netflix.com/Movie/Sid_Nancy/962762",
+country: "United Kingdom"
+},
+{
+netflix_streaming: "false",
+title: "Dead Ringers",
+spine: "21",
+year: "1988",
+director: "David Cronenberg",
+url: "http://www.netflix.com/Movie/Dead_Ringers/70027574",
+country: "United States"
+},
+{
+netflix_streaming: "true",
+title: "Summertime",
+spine: "22",
+year: "1955",
+director: "David Lean",
+url: "http://www.netflix.com/Movie/Summertime/1012340",
+country: "United States"
+},
+{
+netflix_streaming: "false",
+title: "RoboCop",
+spine: "23",
+year: "1987",
+director: "Paul Verhoeven",
+url: "http://www.netflix.com/Movie/RoboCop/17017738",
+country: "United States"
+},
+{
+netflix_streaming: "true",
+title: "High and Low",
+spine: "24",
+year: "1963",
+director: "Akira Kurosawa",
+url: "http://www.netflix.com/Movie/High_and_Low/588717",
+country: "Japan"
+},
+{
+netflix_streaming: "false",
+title: "Alphaville",
+spine: "25",
+year: "1965",
+director: "Jean-Luc Godard",
+url: "http://www.netflix.com/Movie/Alphaville/246062",
+country: "France"
+}
+]

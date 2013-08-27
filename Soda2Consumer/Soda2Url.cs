@@ -7,10 +7,24 @@ using System.Web;
 
 namespace Soda2Consumer
 {
-    public class Soda2Url
+    public static class Soda2Url
     {
-        public static Uri metadataUrl(string domain, string fourByFour) { return new Uri(string.Format("https://{0}/views/{1}.json", domain, fourByFour)); }
-        public static Uri dataUrl(string host, string fourByFour, string query) { 
+        public static Uri metadataUri(string domain, string fourByFour) 
+        {
+            return new Uri(string.Format("https://{0}/views/{1}.json", domain, fourByFour)); 
+        }
+
+        public static Uri datasetUri(string host, string fourByFour)
+        {
+            return new Uri(string.Format("https://{0}/resource/{1}.json", host, fourByFour));
+        }
+
+        public static Uri rowUri(string host, string fourByFour, string rowId)
+        {
+            return new Uri(string.Format("https://{0}/resource/{1}/{2}.json", host, fourByFour, HttpUtility.UrlEncode(rowId)));
+        }
+
+        public static Uri queryUri(string host, string fourByFour, string query) { 
             return new Uri(string.Format("https://{0}/resource/{1}.json?$query={2}", host, fourByFour, HttpUtility.UrlEncode(query))); 
         }
     }

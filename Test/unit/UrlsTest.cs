@@ -10,7 +10,7 @@ namespace UnitTests
         [TestMethod]
         public void dataUrlTest()
         {
-            var url = Soda2Url.dataUrl("opendata.socrata.com", "qrqr-xi46", "select * limit 3");
+            var url = Soda2Url.queryUri("opendata.socrata.com", "qrqr-xi46", "select * limit 3");
             Assert.AreEqual(new Uri("https://opendata.socrata.com/resource/qrqr-xi46.json?$query=select+*+limit+3"), url);
         }
     }

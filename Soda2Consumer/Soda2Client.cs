@@ -51,24 +51,64 @@ namespace Soda2Consumer
             return WebRequest.Create(uri);
         }
 
-        public WebResponse sendWebRequest(Uri uri)
+        public WebResponse get(Uri uri)
+        {
+            return sendWebRequest("GET", uri);
+        }
+
+        public WebResponse post(Uri uri, string body)
+        {
+            return sendWebRequest("POST", uri, body);
+        }
+
+        public WebResponse put(Uri uri, string body)
+        {
+            return sendWebRequest("PUT", uri, body);
+        }
+
+        public WebResponse delete(Uri uri)
+        {
+            return sendWebRequest("DELETE", uri);
+        }
+
+        protected WebResponse sendWebRequest(string method, Uri uri)
+        {
+            return sendWebRequest(method, uri, null);
+        }
+
+        protected WebResponse sendWebRequest(string method, Uri uri, string body)
         {
             var request = createWebRequest(uri);
+            request.Method = method;
+            
+
+            if (body != null)
+            {
+                var bytes = new UTF8Encoding().GetBytes(body);
+                using (Stream requestStream = request.GetRequestStream())
+                {
+                    requestStream.Write(bytes, 0, bytes.Length);
+                    requestStream.Close();
+                }
+            }
+
             try
             {
                 var response = request.GetResponse();
                 return response;
             }
-            catch (WebException e)
+            catch (WebException wex)
             {
-                return e.Response;
+                var stream = wex.Response.GetResponseStream();
+                var exBody = new StreamReader(stream).ReadToEnd();
+                throw new SocrataException(exBody, wex);
             }
         }
 
         public Dataset<R> getDatasetInfo<R>(string host, string fourByFour)
         {
-            var url = Soda2Url.metadataUrl(host, fourByFour);
-            var response = sendWebRequest(url);
+            var url = Soda2Url.metadataUri(host, fourByFour);
+            var response = get(url);
             string body = new StreamReader(response.GetResponseStream()).ReadToEnd();
             var ser = new JavaScriptSerializer();
             var dataset = ser.Deserialize<Dataset<R>>(body);

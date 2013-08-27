@@ -6,7 +6,9 @@ using System.Text;
 
 namespace Soda2Consumer
 {
-    public class Row : Dictionary<string, object>
-    {   
+    public class Row : Dictionary<string, object> 
+    {
+        public Row() { }
+        public Row(Dictionary<string,object> dictionary) : base(dictionary) { }
     }
 }

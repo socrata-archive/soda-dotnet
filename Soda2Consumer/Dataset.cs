@@ -30,25 +30,14 @@ namespace Soda2Consumer
             this.viewLastModified = properties.viewLastModified;
             this.columns = properties.columns;
         }
-        public QueryResult<R> query(string q)
+        public R[] query(string q)
         {
-            var response = client.get(Soda2Url.queryUri(domain, id, q));
-            var rows = new QueryResult<R>(response.GetResponseStream(), columns);
-            response.Close();
-            return rows;            
+            return client.getAndRead<R[]>(Soda2Url.queryUri(domain, id, q));
         }
 
-        public QueryResult<R> query(QueryBuilder qb) { return query(qb.ToString()); }
+        public R[] query(QueryBuilder qb) { return query(qb.ToString()); }
 
-        public R getRow(string rowId)
-        {
-            var response = client.get(Soda2Url.rowUri(domain, id, rowId));
-            var body = new StreamReader(response.GetResponseStream()).ReadToEnd();
-            var ser = new JavaScriptSerializer();
-            var row = ser.Deserialize<R>(body);           
-            response.Close();
-            return row;
-        }
+        public R getRow(string rowId) { return client.getRow<R>(this.domain, this.id, rowId); }
 
         public string domain { get; protected set; }
         

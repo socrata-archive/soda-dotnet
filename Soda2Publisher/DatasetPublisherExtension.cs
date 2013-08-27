@@ -14,28 +14,24 @@ namespace Soda2Publisher
 
         public static void truncate<R>(this Dataset<R> dataset)
         {
-            var response = dataset.client.delete(Soda2Url.datasetUri(dataset.domain, dataset.id));
-            response.Close();
+            dataset.client.delete(Soda2Url.datasetUri(dataset.domain, dataset.id));
         }
 
         public static void upsert<R>(this Dataset<R> dataset, Row[] rowsToUpsert)
         {
             var body = ser.Serialize(rowsToUpsert);
-            var response = dataset.client.post(Soda2Url.datasetUri(dataset.domain, dataset.id), body);
-            response.Close();
+            dataset.client.post(Soda2Url.datasetUri(dataset.domain, dataset.id), body);
         }
         
         public static void updateRow<R>(this Dataset<R> dataset, string rowId, Row row)
         {
             var body = ser.Serialize(row);
-            var response = dataset.client.post(Soda2Url.rowUri(dataset.domain, dataset.id, rowId), body);
-            response.Close();
+            dataset.client.post(Soda2Url.rowUri(dataset.domain, dataset.id, rowId), body);
         }
 
         public static void deleteRow<R>(this Dataset<R> dataset, string rowId)
         {
-            var response = dataset.client.delete(Soda2Url.rowUri(dataset.domain, dataset.id, rowId));
-            response.Close();
+            dataset.client.delete(Soda2Url.rowUri(dataset.domain, dataset.id, rowId));
         }
 
         public static void addRow<R>(this Dataset<R> dataset, Row row)
@@ -43,8 +39,7 @@ namespace Soda2Publisher
             row.Remove(":id");
             row.Remove(":delete");
             var body = ser.Serialize(row);
-            var response = dataset.client.post(Soda2Url.datasetUri(dataset.domain, dataset.id), body);
-            response.Close();
+            dataset.client.post(Soda2Url.datasetUri(dataset.domain, dataset.id), body);
         }
     }
 }

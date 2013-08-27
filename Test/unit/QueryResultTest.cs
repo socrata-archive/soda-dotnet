@@ -12,33 +12,33 @@ namespace UnitTests
         FileStream crimeJson = File.OpenRead("resources/crime.json");
         Column[] columns = null;
         
-        protected void testResultDeserialization<R>(QueryResult<R> qr)
+        protected void testResultDeserialization<R>(R[] rows)
         {
             Assert.IsTrue(crimeJson.Length > 0, "could not read file");
-            Assert.IsNotNull(qr.rows, "QueryResult did not assign rows");
-            Assert.IsTrue(qr.rows.Length > 0, "QueryResult did not create rows");
-            Assert.IsTrue(qr.rows.Length == 999, "QueryResult did not create all the rows");
+            Assert.IsNotNull(rows, "did not assign rows");
+            Assert.IsTrue(rows.Length > 0, "QueryResult did not create rows");
+            Assert.IsTrue(rows.Length == 999, "QueryResult did not create all the rows");
         }
 
         [TestMethod]
         public void QueryResultConstructorWithRowClassTest()
         {
-            QueryResult<Row> qr = new QueryResult<Row>(crimeJson, columns);
-            testResultDeserialization(qr);
+            var rows = Soda2Client.deserialize<Row[]>(crimeJson);
+            testResultDeserialization(rows);
         }
 
         [TestMethod]
         public void QueryResultWithModelClassTest()
         {
-            QueryResult<Crime> qr = new QueryResult<Crime>(crimeJson, columns);
-            testResultDeserialization(qr);
+            var rows = Soda2Client.deserialize<Crime[]>(crimeJson);
+            testResultDeserialization(rows);
         }
 
         [TestMethod]
         public void QueryResultWithObjectClassTest()
         {
-            QueryResult<Object> qr = new QueryResult<Object>(crimeJson, columns);
-            testResultDeserialization(qr);
+            var rows = Soda2Client.deserialize<Object[]>(crimeJson);
+            testResultDeserialization(rows);
         }
     }
 }

@@ -23,7 +23,7 @@ namespace UnitTests.integration
         {
             dataset.truncate();
             var resultA = dataset.query("select *");
-            Assert.AreEqual(0, resultA.rows.Length, "rows present after truncate");
+            Assert.AreEqual(0, resultA.Length, "rows present after truncate");
 
             FileStream movieJson = File.OpenRead("resources/movies.json");
             var body = new StreamReader(movieJson).ReadToEnd();
@@ -31,11 +31,11 @@ namespace UnitTests.integration
             var movies = ser.Deserialize<Row[]>(body);
             dataset.upsert(movies);
             var resultB = dataset.query("select :id, title, year, director, country");
-            Assert.IsTrue(resultB.rows.Length > 0, "no rows after upsert");
+            Assert.IsTrue(resultB.Length > 0, "no rows after upsert");
 
             dataset.truncate();
             var resultC = dataset.query("select *");
-            Assert.AreEqual(0, resultC.rows.Length, "rows present after (second) truncate");
+            Assert.AreEqual(0, resultC.Length, "rows present after (second) truncate");
         }
         
         [TestMethod]
@@ -43,11 +43,11 @@ namespace UnitTests.integration
         {
             const string testRowQuery = "select :id, title, year where title = 'test-row'";
             var initialCheckResponse = dataset.query(testRowQuery);
-            if (initialCheckResponse.rows.Length > 0) 
+            if (initialCheckResponse.Length > 0) 
             {
-                for (int i = 0; i < initialCheckResponse.rows.Length; i++) 
+                for (int i = 0; i < initialCheckResponse.Length; i++) 
                 {
-                    dataset.deleteRow(initialCheckResponse.rows[i][":id"].ToString());
+                    dataset.deleteRow(initialCheckResponse[i][":id"].ToString());
                 }
                 Assert.Fail("test rows already present. Invalid starting condition. Try to run again");
             }
@@ -58,8 +58,8 @@ namespace UnitTests.integration
 
             dataset.addRow(testRow);
             var responseWithAddedRow = dataset.query(testRowQuery);
-            Assert.AreEqual(1, responseWithAddedRow.rows.Length, "could not find row that should have been added");
-            var testRowAfterAdd = responseWithAddedRow.rows[0];
+            Assert.AreEqual(1, responseWithAddedRow.Length, "could not find row that should have been added");
+            var testRowAfterAdd = responseWithAddedRow[0];
             Assert.AreEqual(testRow["year"].ToString(), testRowAfterAdd["year"].ToString(), "received row year differs from added row");
             Assert.AreEqual(testRow["title"].ToString(), testRowAfterAdd["title"].ToString(), "received row year differs from added row");
 

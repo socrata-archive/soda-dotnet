@@ -18,7 +18,7 @@ namespace SampleDataConsumerApp
             var dataset = noAuthClient.getDatasetInfo<Row>(host, datasetId);
             Column[] columns = dataset.columns;
             var responseA = dataset.query("select * where title = 'The Killer'");
-            Console.WriteLine(String.Format("The Killer was directed by {0}", responseA.rows[0]["director"]));
+            Console.WriteLine(String.Format("The Killer was directed by {0}", responseA[0]["director"]));
 
             var responseB = dataset.query(
                 new QueryBuilder()
@@ -30,8 +30,8 @@ namespace SampleDataConsumerApp
             );
             Console.WriteLine(
                 String.Format("This dataset shows {1} movies from {0}", 
-                responseB.rows[1]["year"], 
-                responseB.rows[1]["count_year"])
+                responseB[1]["year"], 
+                responseB[1]["count_year"])
             );
         }
     }

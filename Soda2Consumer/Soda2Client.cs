@@ -34,16 +34,13 @@ namespace Soda2Consumer
     {
         protected string appToken;
 
-        
-        
         public Soda2Client(string p)
         {
             this.appToken = p;
         }
 
         public Soda2Client()
-        {
-            
+        {            
         }
 
         protected virtual WebRequest createWebRequest(Uri uri)
@@ -51,32 +48,32 @@ namespace Soda2Consumer
             return WebRequest.Create(uri);
         }
 
-        public WebResponse get(Uri uri)
+        public B getAndRead<B>(Uri uri)
         {
-            return sendWebRequest("GET", uri);
+            return sendGetAndRead<B>(uri);
         }
 
-        public WebResponse post(Uri uri, string body)
+        public void post(Uri uri, string body)
         {
-            return sendWebRequest("POST", uri, body);
+            sendWebRequest("POST", uri, body);
         }
 
-        public WebResponse put(Uri uri, string body)
+        public void put(Uri uri, string body)
         {
-            return sendWebRequest("PUT", uri, body);
+            sendWebRequest("PUT", uri, body);
         }
 
-        public WebResponse delete(Uri uri)
+        public void delete(Uri uri)
         {
-            return sendWebRequest("DELETE", uri);
+            sendWebRequest("DELETE", uri);
         }
 
-        protected WebResponse sendWebRequest(string method, Uri uri)
+        protected void sendWebRequest(string method, Uri uri)
         {
-            return sendWebRequest(method, uri, null);
+            sendWebRequest(method, uri, null);
         }
 
-        protected WebResponse sendWebRequest(string method, Uri uri, string body)
+        protected void sendWebRequest(string method, Uri uri, string body)
         {
             var request = createWebRequest(uri);
             request.Method = method;
@@ -95,7 +92,7 @@ namespace Soda2Consumer
             try
             {
                 var response = request.GetResponse();
-                return response;
+                response.Close();
             }
             catch (WebException wex)
             {
@@ -112,14 +109,50 @@ namespace Soda2Consumer
             }
         }
 
+        protected B sendGetAndRead<B>(Uri uri)
+        {
+            var request = createWebRequest(uri);
+            request.Method = "GET";
+
+            try
+            {
+                var response = request.GetResponse();
+                var thing = deserialize<B>(response.GetResponseStream());
+                response.Close();
+                return thing;
+            }
+            catch (WebException wex)
+            {
+                if (wex.Response != null)
+                {
+                    var stream = wex.Response.GetResponseStream();
+                    var exBody = new StreamReader(stream).ReadToEnd();
+                    throw new SodaException(exBody, wex);
+                }
+                else
+                {
+                    throw wex;
+                }
+            }
+        }
+
+        public static R deserialize<R>(Stream stream)
+        {
+            var body = new StreamReader(stream).ReadToEnd();
+            var ser = new JavaScriptSerializer();
+            var thing = ser.Deserialize<R>(body);
+            return thing;
+        }
+
+        public R getRow<R>(string host, string fourByFour, string rowId)
+        {
+            return getAndRead<R>(Soda2Url.rowUri(host, fourByFour, rowId));
+        }
+
         public Dataset<R> getDatasetInfo<R>(string host, string fourByFour)
         {
             var url = Soda2Url.metadataUri(host, fourByFour);
-            var response = get(url);
-            string body = new StreamReader(response.GetResponseStream()).ReadToEnd();
-            var ser = new JavaScriptSerializer();
-            var properties = ser.Deserialize<DatasetProperties>(body);
-            response.Close();
+            var properties = getAndRead<DatasetProperties>(url);
             return new Dataset<R>(properties, host, this);
         }
     }

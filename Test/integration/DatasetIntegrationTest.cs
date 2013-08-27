@@ -29,16 +29,16 @@ namespace UnitTests.integration
         public void simpleQueryTest()
         {
             var qr = dataset.query("select *");
-            Assert.IsNotNull(qr.rows);
-            Assert.IsTrue(qr.rows.Length == 1000);
+            Assert.IsNotNull(qr);
+            Assert.IsTrue(qr.Length == 1000);
         }
 
         [TestMethod]
         public void complexQueryTest()
         {
             var qr = dataset.query("select id, description, location_description where primary_type = 'ASSAULT' limit 5 offset 5");
-            Assert.IsNotNull(qr.rows);
-            Assert.IsTrue(qr.rows.Length == 5);
+            Assert.IsNotNull(qr);
+            Assert.IsTrue(qr.Length == 5);
         }
     }
 }

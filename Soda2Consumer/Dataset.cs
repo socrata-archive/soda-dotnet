@@ -12,6 +12,24 @@ namespace Soda2Consumer
     
     public class Dataset<R>
     {
+
+        public Dataset(DatasetProperties properties, string host, Soda2Client soda2Client)
+        {
+            this.domain = host;
+            this.client = soda2Client;
+            this.id = properties.id;
+            this.name = properties.name;
+            this.attribution = properties.attribution;
+            this.attributionLink = properties.attributionLink;
+            this.category = properties.category;
+            this.createdAt = properties.createdAt;
+            this.description = properties.description;
+            this.downloadCount = properties.downloadCount;
+            this.licenceId = properties.licenceId;
+            this.rowsUpdatedAt = properties.rowsUpdatedAt;
+            this.viewLastModified = properties.viewLastModified;
+            this.columns = properties.columns;
+        }
         public QueryResult<R> query(string q)
         {
             var response = client.get(Soda2Url.queryUri(domain, id, q));
@@ -32,41 +50,32 @@ namespace Soda2Consumer
             return row;
         }
 
-        public string domain { get; set; }
+        public string domain { get; protected set; }
         
-        public string id { get; set; }
+        public string id { get; protected set; }
         
-        public string name { get; set; }
+        public string name { get; protected set; }
         
-        public string attribution { get; set; }
+        public string attribution { get; protected set; }
         
-        public string attributionLink { get; set; }
+        public string attributionLink { get; protected set; }
         
-        public string category { get; set; }
+        public string category { get; protected set; }
         
-        public long createdAt { get; set; }
+        public long createdAt { get; protected set; }
         
-        public string description { get; set; }
+        public string description { get; protected set; }
         
-        public long downloadCount { get; set; }
+        public long downloadCount { get; protected set; }
         
-        public string licenceId { get; set; }
+        public string licenceId { get; protected set; }
         
-        public long rowsUpdatedAt { get; set; }
+        public long rowsUpdatedAt { get; protected set; }
         
-        public long viewLastModified { get; set; }
+        public long viewLastModified { get; protected set; }
         
-        public Column[] columns { get; set; }
+        public Column[] columns { get; protected set; }
 
-        //present in error response
-        public string code { get; set; }
-
-        //indicates error
-        public bool error { get; set; }
-
-        //present in error response
-        public string message { get; set; }
-
-        public Soda2Client client { get; set; }
+        public Soda2Client client { get; protected set; }
     }
 }

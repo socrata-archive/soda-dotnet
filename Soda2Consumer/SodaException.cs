@@ -5,8 +5,8 @@ using System.Text;
 
 namespace Soda2Consumer
 {
-    public class SocrataException : Exception
+    public class SodaException : Exception
     {
-        public SocrataException(string message, Exception inner) : base(message, inner) {}
+        public SodaException(string message, Exception inner) : base(message, inner) {}
     }
 }

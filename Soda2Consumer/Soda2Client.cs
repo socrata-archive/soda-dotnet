@@ -103,7 +103,7 @@ namespace Soda2Consumer
                 {
                     var stream = wex.Response.GetResponseStream();
                     var exBody = new StreamReader(stream).ReadToEnd();
-                    throw new SocrataException(exBody, wex);
+                    throw new SodaException(exBody, wex);
                 }
                 else 
                 {
@@ -118,11 +118,9 @@ namespace Soda2Consumer
             var response = get(url);
             string body = new StreamReader(response.GetResponseStream()).ReadToEnd();
             var ser = new JavaScriptSerializer();
-            var dataset = ser.Deserialize<Dataset<R>>(body);
+            var properties = ser.Deserialize<DatasetProperties>(body);
             response.Close();
-            dataset.client = this;
-            dataset.domain = host;
-            return dataset;
+            return new Dataset<R>(properties, host, this);
         }
     }
 }

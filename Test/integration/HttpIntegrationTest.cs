@@ -18,7 +18,7 @@ namespace UnitTests
         
 
         [TestMethod]
-        [ExpectedException(typeof(SocrataException))]
+        [ExpectedException(typeof(SodaException))]
         public void ConfirmDatasetPrivateTest()
         {
             Dataset<Row> shouldBePrivate = noAuthClient.getDatasetInfo<Row>(host, datasetId);

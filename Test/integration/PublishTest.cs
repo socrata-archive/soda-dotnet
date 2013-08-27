@@ -76,7 +76,7 @@ namespace UnitTests.integration
                 var testRowAfterDelete = dataset.getRow(rowId);
                 Assert.Fail("row present after delete");
             }
-            catch (SocrataException){}
+            catch (SodaException){}
         }
     }
 }

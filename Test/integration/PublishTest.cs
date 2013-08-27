@@ -15,7 +15,8 @@ namespace UnitTests.integration
         public static string datasetId = ConfigurationManager.AppSettings["socrata.sample.publishDataset"];
         private static string username = ConfigurationManager.AppSettings["socrata.username"];
         private static string password = ConfigurationManager.AppSettings["socrata.password"];
-        public static Soda2Client basicAuthClient = new Soda2BasicAuthClient(username, password);
+        private static string appToken = ConfigurationManager.AppSettings["socrata.appToken"];
+        public static Soda2Client basicAuthClient = new Soda2Client(username, password, appToken);
         public static Dataset<Row> dataset = basicAuthClient.getDatasetInfo<Row>(host, datasetId);
 
         [TestMethod]

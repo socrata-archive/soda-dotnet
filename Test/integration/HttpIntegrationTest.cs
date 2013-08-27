@@ -13,9 +13,9 @@ namespace UnitTests
         public static string datasetId = ConfigurationManager.AppSettings["socrata.sample.privateDataset"];
         private static string username = ConfigurationManager.AppSettings["socrata.username"];
         private static string password = ConfigurationManager.AppSettings["socrata.password"];
-        public static Soda2Client noAuthClient = new Soda2Client();
-        public static Soda2Client basicAuthClient = new Soda2BasicAuthClient(username, password);
-        
+        private static string appToken = ConfigurationManager.AppSettings["socrata.appToken"];
+        public static Soda2Client noAuthClient = new Soda2Client(null,null,null);
+        public static Soda2Client basicAuthClient = new Soda2Client(username, password, appToken);        
 
         [TestMethod]
         [ExpectedException(typeof(SodaException))]

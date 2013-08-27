@@ -10,14 +10,9 @@ namespace UnitTests.integration
     {
         public static string host = ConfigurationManager.AppSettings["socrata.host"];
         public static string datasetId = ConfigurationManager.AppSettings["socrata.sample.dataset"];
-        public static Soda2Client noAuthClient = new Soda2Client();
+        public static Soda2Client noAuthClient = new Soda2Client(null,null,null);
         public static Dataset<Row> dataset = noAuthClient.getDatasetInfo<Row>(host, datasetId);
         
-        [TestMethod]
-        public void noopIntegrationTest()
-        {
-        }
-
         [TestMethod]
         public void datasetInfoTest() 
         {   

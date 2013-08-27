@@ -45,7 +45,6 @@
     <Compile Include="DatasetProperties.cs" />
     <Compile Include="Dataset.cs" />
     <Compile Include="QueryBuilder.cs" />
-    <Compile Include="QueryResult.cs" />
     <Compile Include="Row.cs" />
     <Compile Include="SodaException.cs" />
     <Compile Include="Soda2Client.cs" />

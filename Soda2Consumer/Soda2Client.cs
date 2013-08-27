@@ -8,44 +8,33 @@ using System.Web.Script.Serialization;
 
 namespace Soda2Consumer
 {
-    public class Soda2BasicAuthClient : Soda2Client
-    {
-        private string username;
-        private string password;
-        protected override WebRequest createWebRequest(Uri uri)
-        {
-            var wr = base.createWebRequest(uri);
-            string authInfo = username + ":" + password;
-            authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(authInfo));
-            wr.Headers["Authorization"] = "Basic " + authInfo;
-            wr.Headers["X-App-Token"] = "zjL32Qb0VxNaI9xEUeJezBEIL";
-            return wr;
-        }
-
-        public Soda2BasicAuthClient(string username, string password)
-        {
-            // TODO: Complete member initialization
-            this.username = username;
-            this.password = password;
-        }
-    }
-
     public class Soda2Client
     {
-        protected string appToken;
+        public string appToken { get; set; }
+        public string username { get; set; }
+        public string password { private get; set; }
 
-        public Soda2Client(string p)
+        public Soda2Client(string username, string password, string appToken) 
         {
-            this.appToken = p;
-        }
-
-        public Soda2Client()
-        {            
+            this.username = username;
+            this.password = password;
+            this.appToken = appToken;
         }
 
         protected virtual WebRequest createWebRequest(Uri uri)
         {
-            return WebRequest.Create(uri);
+            var wr = WebRequest.Create(uri);
+            if (username != null && password != null)
+            {
+                string authInfo = username + ":" + password;
+                authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(authInfo));
+                wr.Headers["Authorization"] = "Basic " + authInfo;
+            }
+            if (appToken != null)
+            {
+                wr.Headers["X-App-Token"] = "zjL32Qb0VxNaI9xEUeJezBEIL";
+            }
+            return wr;
         }
 
         public B getAndRead<B>(Uri uri)
@@ -91,22 +80,9 @@ namespace Soda2Consumer
 
             try
             {
-                var response = request.GetResponse();
-                response.Close();
+                using (var response = request.GetResponse()) { }
             }
-            catch (WebException wex)
-            {
-                if (wex.Response != null)
-                {
-                    var stream = wex.Response.GetResponseStream();
-                    var exBody = new StreamReader(stream).ReadToEnd();
-                    throw new SodaException(exBody, wex);
-                }
-                else 
-                {
-                    throw wex;
-                }
-            }
+            catch (WebException wex) { throw tryReadSodaException(wex); }
         }
 
         protected B sendGetAndRead<B>(Uri uri)
@@ -116,23 +92,25 @@ namespace Soda2Consumer
 
             try
             {
-                var response = request.GetResponse();
-                var thing = deserialize<B>(response.GetResponseStream());
-                response.Close();
-                return thing;
+                using (var response = request.GetResponse()) 
+                { 
+                    var thing = deserialize<B>(response.GetResponseStream());
+                    return thing;
+                }
             }
-            catch (WebException wex)
+            catch (WebException wex) { throw tryReadSodaException(wex); }
+        }
+
+        public Exception tryReadSodaException(WebException wex){
+            if (wex.Response != null)
             {
-                if (wex.Response != null)
-                {
-                    var stream = wex.Response.GetResponseStream();
-                    var exBody = new StreamReader(stream).ReadToEnd();
-                    throw new SodaException(exBody, wex);
-                }
-                else
-                {
-                    throw wex;
-                }
+                var stream = wex.Response.GetResponseStream();
+                var exBody = new StreamReader(stream).ReadToEnd();
+                return new SodaException(exBody, wex);
+            }
+            else
+            {
+                return wex;
             }
         }
 

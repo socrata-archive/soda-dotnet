@@ -8,6 +8,6 @@
     <add key="socrata.sample.publishDataset" value=""/>
     <add key="socrata.username" value="" />
     <add key="socrata.password" value="" />
-    <add key="socrata.app_token" value="" />
+    <add key="socrata.appToken" value="" />
   </appSettings>
 </configuration>

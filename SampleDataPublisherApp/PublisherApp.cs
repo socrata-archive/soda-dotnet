@@ -19,7 +19,8 @@ namespace SampleDataPublisherApp
             string datasetId = ConfigurationManager.AppSettings["socrata.sample.publishDataset"];
             string username = ConfigurationManager.AppSettings["socrata.username"];
             string password = ConfigurationManager.AppSettings["socrata.password"];
-            var basicAuthClient = new Soda2BasicAuthClient(username, password);
+            string appToken = ConfigurationManager.AppSettings["socrata.appToken"];
+            var basicAuthClient = new Soda2Client(username, password, appToken);
             var dataset = basicAuthClient.getDatasetInfo<Row>(host, datasetId);
 
         }

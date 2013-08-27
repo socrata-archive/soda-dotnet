@@ -12,7 +12,7 @@ namespace SampleDataConsumerApp
     {
         static void Main(string[] args)
         {
-            var noAuthClient = new Soda2Client();
+            var noAuthClient = new Soda2Client(null,null,null);
             var host = ConfigurationManager.AppSettings["socrata.host"];
             var datasetId = ConfigurationManager.AppSettings["socrata.sample.dataset"];
             var dataset = noAuthClient.getDatasetInfo<Row>(host, datasetId);

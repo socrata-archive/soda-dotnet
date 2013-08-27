@@ -51,7 +51,7 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="resources\movies.json">
+    <None Include="resources\movies.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

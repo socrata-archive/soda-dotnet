@@ -23,6 +23,23 @@ namespace SampleDataPublisherApp
             var basicAuthClient = new Soda2Client(username, password, appToken);
             var dataset = basicAuthClient.getDatasetInfo<Row>(host, datasetId);
 
+            //demo only - this simple CSV parsing doesn't handle escaped commas!
+            FileStream movieCsv = File.OpenRead("resources/movies.csv");
+            StreamReader reader = new StreamReader(movieCsv);
+            var header = reader.ReadLine().Split(',');
+            LinkedList<Row> rows = new LinkedList<Row>();
+            while (!reader.EndOfStream)
+            {
+                var line = reader.ReadLine().Split(',');
+                Row row = new Row();
+                for (int i = 0; i < line.Length; i++)
+                {
+                    row.Add(header[i], line[i]);
+                }
+                rows.AddLast(row);
+            }
+            dataset.truncate();
+            dataset.upsert(rows.ToArray());
         }
     }
 }

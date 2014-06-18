@@ -32,7 +32,7 @@ namespace Soda2Consumer
             }
             if (appToken != null)
             {
-                wr.Headers["X-App-Token"] = appToken
+                wr.Headers["X-App-Token"] = appToken;
             }
             return wr;
         }
